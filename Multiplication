@@ -1,0 +1,12 @@
+.data
+     number1: .word 2
+     number2: .word 2
+.text
+
+    lw $t1, number1
+    lw $t2, number2
+    
+    multu $t1,$t2
+    
+    mflo $t1
+    

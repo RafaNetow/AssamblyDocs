@@ -1,0 +1,33 @@
+.data 
+	newLine: .ascii "\n"
+.text
+	main:
+		addi $s0, $zero, 10
+		jal increasyMyRegisger
+		#Print value , aca se imprimiera 10 porque? debido a naturaleza de los registros $s que pueden utilizar su valor pero al regresar a su funcion resetean su valor orignal.
+		li $v0,1
+		move $a0, $s0
+		syscall
+		
+  	#this line is going to signel end of program
+  	li $v0,10
+  	syscall
+  	
+  	increasyMyRegisger:
+  		addi $sp, $sp, -4
+  		sw   $s0, 0($sp)	
+  		addi $s0, $s0, 30
+  		
+  		
+  		#Print new value in function
+  		li $v0,1
+  		move $a0, $s0
+  		syscall
+  		
+  		#restaouro el sack pointer a su pos originl
+  		lw $s0, 0($sp)
+  		addi $sp, $sp,4
+  		
+  		jr $ra
+  			
+	

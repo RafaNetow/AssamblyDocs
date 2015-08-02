@@ -2,14 +2,17 @@
  	message: .ascii "Hi, everybody. n\My name is Rafael.\n"	
 .text
 	main:
-	
+		jal displayMessage
+		
 	
 	li $v0, 10
+	
 	syscall
 	
 	displayMessage:
 	li $v0, 4
 	la $a0, message
 	syscall
+	
 	
 	jr $ra

@@ -1,0 +1,83 @@
+.data
+ 	menu: .asciiz "Ingrese la opcion:\n 1.Sumar \n 2.Restar \n 3.Multiplicar \n 4.Dividir \n"
+ 	numero1: .asciiz "Escriba numero 1: \n"
+ 	numero2: .asciiz "Escriba numero 2: \n"
+ 	espacio: .asciiz "\n"
+.text
+    main:
+    	
+    	
+    	
+    	
+    	
+    	#Imprimir el menu
+    	li $v0,4
+    	la $a0,menu
+        syscall
+  	
+  	#leer el numero de la opcion
+  	li $v0,5
+	syscall
+	move $s3,$v0
+  	
+  	#pedir numero 1
+ 	li $v0, 4
+	la $a0, numero1 
+	syscall
+	
+	#leer numero 1
+	li $v0,5
+	syscall
+	move $s0,$v0
+	
+  	#pedir numero 2
+	li $v0, 4
+	la $a0, numero2
+	syscall
+	
+	#leer numero 2
+	li $v0,5
+	syscall
+	move $s1,$v0
+ 	
+ 	beq $s3,1,suma
+ 	
+ 	beq $s3,2,resta
+ 	
+ 	beq $s3,3, multiplicacion
+ 	
+ 	beq $s3,4,division
+ 	
+ 	##beq $s3,5,exit
+ 	
+ 	
+    
+    # Finalilizar el programa, exit del sistema
+ 
+      li $v0,10
+      syscall   
+      
+  
+    
+           
+   
+   suma:
+	  ##add $a0, $zero, $t2
+	 add $t2, $s0, $s1
+	#Imprimir el resulado
+    	 li $v0 1
+ 	 add $a0, $zero, $t2
+  	 syscall
+	j main
+   
+   resta:
+	sub $t2,  $s0, $s1
+	j main
+   
+   multiplicacion:
+  	mul  $t2, $s0, $s1
+	j main
+	
+   division:
+   	div $t2, $s0, $s1
+	j main
